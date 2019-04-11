@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Edition d'une annonce
+{% endblock %}
+{#permet d'utiliser le bloc widget (ad images widget)#}
+{% form_theme form 'ad/_adForm.html.twig' %}
+
+{# bloc principal du formulaire #}
+{% block body %}
+    <div class="container">
+        <h1 class="text-center">Modifier l'annonce : {{ ad.title }}</h1>
+        <div class="offset-md-3 col-12 col-md-6 mt-5 text-center">
+            {{ form_start(form) }}
+    
+            {{ form_widget(form) }}
+            <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+    
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+
+<script src="/js/ad.js"></script>
+
+{% endblock %}

@@ -10,7 +10,7 @@
         <hr class="my-4">
         <p>Vous êtes voyageurs ? et vous voulez voir où vous pourrez vous loger pour votre prochain déplacement ?</p>
         <p class="lead">
-            <a class="btn btn-primary btn-lg" href="#" role="button">Voir nos annonces</a>
+            <a class="btn btn-primary btn-lg" href="{{ path('ads_index')}}" role="button">Voir nos annonces</a>
         </p>
     </div>
     <h2 class="text-center h1 mt-3 mb-5">Nos appartements</h2>
@@ -131,7 +131,33 @@
         </div>
     </div>
 </div>
-
+{# 
+    {% for ad in ads %}
+        <div class="col-md-4">
+            <div class="card bg-light mb-3">
+                <div class="card-header text-center">
+                   {{ ad.rooms }} chambres,<b> {{ ad.price }}&euro; / nuit</b> <br>
+                    <small>Pas encore noté</small>
+                    <a href="{{ path('ads_show',{'slug' : ad.slug}) }}">
+                        <img src="{{ ad.coverImage }}" alt="image de l'appartement" height="200px" width="100%" style="display: block;">
+                    </a>
+    
+                    <div class="card-body">
+                        <a href="{{ path('ads_show',{'slug' : ad.slug}) }}">
+                            <h4 class="card-title">
+                                {{ ad.title }}
+                            </h4>
+                        </a>
+                        <p class="card-text">
+                            {{ ad.introduction }}
+                        </p>
+                        <a href="{{ path('ads_show',{'slug' : ad.slug}) }}" class="btn btn-secondary lg">En savoir plus!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    #}
 {% endblock %}
 
 {% block javascripts %}
