@@ -11,6 +11,7 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -88,6 +89,7 @@ class AccountController extends AbstractController
      * Permet d'afficher et de traiter le formulaire de modification de profil
      * 
      * @Route("/account/profile", name="account_profile")
+     * @IsGranted("ROLE_USER")
      *
      * @return Response
      */
@@ -105,6 +107,8 @@ class AccountController extends AbstractController
                 'success',
                 "les données du profil ont été modifiés avec succés!"
             );
+
+            return $this->redirectToRoute('account_index');
         }
 
         return $this->render('account/profile.html.twig',[
@@ -116,6 +120,7 @@ class AccountController extends AbstractController
      * Permet à l'utilisateur de modifier son mot de passe
      * 
      * @Route("/account/password-update", name="account_password")
+     * @IsGranted("ROLE_USER")
      *
      * @return Response
      */
@@ -164,6 +169,7 @@ class AccountController extends AbstractController
      * Permet à l'utilisteur d'accèder à son compte
      *
      * @Route("/account", name="account_index")
+     * @IsGranted("ROLE_USER")
      * 
      * @return Response
      */
