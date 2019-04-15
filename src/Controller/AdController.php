@@ -28,9 +28,11 @@ class AdController extends AbstractController
     }
 
     /**
+     * Permet de créer une nouvelle annonce
+     * 
      * @Route("/ads/new", name="ads_new")
      *
-     * @return void
+     * @return Response
      */
     public function create(Request $request,ObjectManager $manager){
         $ad = new Ad;
@@ -42,6 +44,7 @@ class AdController extends AbstractController
                 $image->setAd($ad);
                 $manager->persist($image);
             }
+            $ad->setAuthor($this->getUser());
             
             $manager->persist($ad);
             $manager->flush();
